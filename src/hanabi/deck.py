@@ -18,8 +18,8 @@ import readline  # this greatly improves `input`
 from enum import Enum
 from enum import unique
 
-from . import ascii_art
-from . import ai
+#from . import ascii_art
+#from . import ai
 
 
 @unique
@@ -49,7 +49,6 @@ class Color(Enum):
         if os.name == 'posix':
             return '\033[%im'%self.value + s + '\033[0m'
         else:
-            # sorry, no colors on windows for the moment
             return s
 
 
@@ -61,6 +60,10 @@ class Card:
         self.number = number
         self.color_clue = False
         self.number_clue = False
+        self.recommanded = False
+        self.risque = False
+        self.dead = False
+        self.indispensable = False
 
     def __str__(self):
         return (str(self.color)[0] + str(self.number))
@@ -283,8 +286,6 @@ class Game:
                 if choice.strip() == '':
                     continue
             elif isinstance(_choice, ai.AI):
-                # fixme: duck-typing seems more natural to students, as in
-                #     try: _choice.play() except AttributeError ...
                 choice = _choice.play()
             elif isinstance(_choice, str):
                 choice = _choice
@@ -358,6 +359,11 @@ class Game:
                     self.add_blue_coin()
                 except ValueError:  # it is valid to play a 5 when we have 8 coins. It is simply lost
                     pass
+            #Après que le joueur ait joué avec succès, toutes les cartes recommandée deviennent risquées
+            for i in range(5):
+                for j in range(4):
+                    if game.hands[i].cards[j].recommanded ==True :
+                        game.hands[i].cards[j].risky == True
         else:
             # misplay!
             self.discard_pile.append(card)
@@ -367,18 +373,13 @@ class Game:
         self.print_piles()
         self.next_player()
 
+
     def clue(self, clue):
         """Action: give a clue.
 
         clue[0] is within (12345RBGWY).
         By default, the clue is given to the next player (backwards compatibility with 2 payers games).
         If clue[1] is given it is the initial (ABCDE) or index (1234) of the target player.
-
-        Example::
-
-           hanabi> cWB    # is a white clue to Benji
-           hanabi> c1     # is a 1 clue to next player
-           hanabi> cRed   # is interpreted as a Red clue to Elric, probably not what you expected!
         """
 
         hint = clue[0].upper()  # so cr is valid to clue Red
@@ -395,24 +396,66 @@ class Game:
             target_index = 1
         target_index = int(target_index)
         if target_index == 0:
-            self.add_blue_coin()  # put back the blue coin
             raise ValueError("Cannot give a clue to yourself.")
 
         target_name = self.players[target_index]
 
         self.log(self.current_player_name, "gives a clue", hint, "to", target_name)
+        """2 listes à 5 entrées : la première c'est le nombre de chaque joueur, et la seconde c'est le nombre que chaque joueur peut déduire pour la partie"""
+        """On en profite pour update les recommandations et les dead cards de chaque joueur"""
+        liste_nombre = [nombre(game,joueur) for joueur in range(5)]#Contient le nombre de chaque joueur après avoir donné un indice
+        somme_mod_huit = sum(liste_nombre[1:])%8
+        somme_joueurs = []
+        somme = sum(liste_nombre)
+        for i in range(5):
+            somme_joueurs.append((somme-liste_nombre[i])%8)
+        #Il faut maintenant que chaque joueur puisse déduire son nombre
+        # nombres_deduits = [liste_nombre[0]]
+        # for i in range(5):
+        #     ndeduit = somme_joueurs[0]
+        #     for j in range(len(liste_nombre)):
+        #         if j!=i:
+        #             ndeduit -=liste_nombre[j]
+        #     nombres_deduits.append(ndeduit)
+            #Il faut reconstituer le nombre de chaque joueur à partir de la somme mod 8 et des nombres qu'ils connaissent
+            #Raffinement : les 5 seront systématiquement flag comme indispensables, et pour le calcul du nombre : si le 5 est c1 et que le joueur n'a rien à jouer, il faut lui donner l'indice que le rang est 5.
+
+            #Il faut ensuite flag les cartes en mettant les attributs dead, recommanded et risky
+            for i in range(1,5):
+                n_propre = liste_nombre[i]
+                if n_propre == 0:
+                    game.hands[i].cards[0].recommanded = True
+                    game.hands[i].cards[0].risky = False
+                if n_propre == 1:
+                    game.hands[i].cards[1].recommanded = True
+                    game.hands[i].cards[1].risky = False
+                if n_propre == 2:
+                    game.hands[i].cards[2].recommanded = True
+                    game.hands[i].cards[2].risky = False
+                if n_propre == 3:
+                    game.hands[i].cards[3].recommanded = True
+                    game.hands[i].cards[3].risky = False
+                if n_propre == 4:
+                    game.hands[i].cards[0].dead = True
+                    game.hands[i].cards[0].recommanded = False
+                if n_propre == 5:
+                    game.hands[i].cards[1].dead = True
+                    game.hands[i].cards[1].recommanded = False
+                if n_propre == 6:
+                    game.hands[i].cards[6].dead = True
+                    game.hands[i].cards[6].recommanded = False
+                if n_propre == 7:
+                    game.hands[i].cards[7].dead = True
+                    game.hands[i].cards[7].recommanded = False
+
+        """Retourne le nombre associé à la main de chaque joueur sous la forme d'une liste à 5 entrées"""
         #  player = clue[1]  # if >=3 players
-        targetted_card = False
         for card in self.hands[target_index].cards:
             if hint in str(card):
-                targetted_card = True
                 if hint in "12345":
                     card.number_clue = hint
                 else:
                     card.color_clue = hint
-        if not targetted_card:
-            self.add_blue_coin()  # put back the blue coin
-            raise ValueError("This clue is not valid (it matches no card in the target hand)")
         self.next_player()
 
     def examine_piles(self, *unused):
@@ -467,8 +510,6 @@ class Game:
 
     @property
     def score(self):
-        if self.red_coins >= 3:
-            return 0
         return sum(self.piles.values())
 
     def run(self):
@@ -509,7 +550,6 @@ moves = %r
      self.starting_deck,
      self.moves))
         # fixme: seems that a deck's repr is its list of cards?
-        f.close()
 
     def load(self, filename):
         """Load a saved game, replay the moves.
@@ -537,6 +577,38 @@ moves = %r
         while moves:
             self.turn(moves)
 
+def nombre(game,joueur):
+    main = game.hands[joueur].cards
+    playable = [ (i+1, card.number) for (i, card) in
+                enumerate(main)
+                if game.piles[card.color]+1 == card.number ]
+    #print(playable)
+    #Ici on dispose de la main du joueur actuel, de l'état des piles, et des cartes jouables dans sa main
+    indice = None#L'indice qui va être renvoyé : c'est le nombre du joueur
+
+    #D'abord on étudie les cas où il y a des cartes jouables
+    if playable != []:
+        #D'abord on cherche les 5 jouable
+        cinq = None#L'indice d'un cinq jouable dans la main du joueur
+        for i in range (len(playable)):
+            if playable[i][1] == 5:
+                return(i,playable)
+        min = playable[0][0]
+        for i in range(len(playable)):
+            if playable[i][0] <= min :
+                min = playable[i][0]
+                carte = playable[i]
+        return(carte[0]-1)
+    else:
+        mortes = [ (i+1, card.number) for (i, card) in
+                enumerate(game.current_hand.cards)
+                if game.piles[card.color] >= card.number ]
+        if mortes !=[]:
+            return(mortes[0][0]+4)
+        else:#Ajouter cartes indispensables si ça marche
+            return(4)
+
+
 
 if __name__ == "__main__":
     # print ("Red 4 is:", Card(Color.Red, 4))
@@ -560,8 +632,8 @@ if __name__ == "__main__":
     #     print("Alice can't play her 1st card")
 
     print("\nLet's start a new game")
-    game = Game(2)
+    game = Game(5)
     print("Here are the hands:")
     print(game.hands)
 
-    game.run()
+    #game.run()

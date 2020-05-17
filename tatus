@@ -1,0 +1,615 @@
+[33mcommit b890a33e12f4f4902ac185eef77af30e146e1000[m[33m ([m[1;36mHEAD -> [m[1;32mDevDylan[m[33m, [m[1;31mDylanJaouiIN104/DevDylan[m[33m)[m
+Author: KeyLawd <germain.vincen7@gmail.com>
+Date:   Sat May 16 11:19:41 2020 +0200
+
+    Et voila le blocnotes avec les trucs à faire et les notes de TD
+
+[33mcommit a3667a0e39e2aa503e0374ca099a80405c8453df[m
+Author: KeyLawd <germain.vincen7@gmail.com>
+Date:   Sat May 16 11:16:52 2020 +0200
+
+    ajout d'attributs 'recommanded','dead','risky' dans deck. Début du code de l'algorithme du chapeau. Dans cette version beta, on ignore les 'cartes indispensables et on défausse tout le temps c1 si aucune dead carte n'est détectée
+
+[33mcommit 2c94ca98f8eb33412d9c1cd1ba38bed9f4569c21[m
+Author: KeyLawd <germain.vincen7@gmail.com>
+Date:   Fri May 15 17:07:50 2020 +0200
+
+    Ajout d'attributs recommanded et risky dans Card. Calcul des nombres mod 8. Beta sans cartes indispensables
+
+[33mcommit 99c54950f42f3af91cc944aa503c8f1fa8d72d7f[m
+Author: Dylou22 <63051472+Dylou22@users.noreply.github.com>
+Date:   Fri May 15 10:34:02 2020 +0200
+
+    Update chapeau5_ai.py
+
+[33mcommit 29a84f6b42010e46ca530e68165c69de1f0ef8dc[m
+Author: Dylou22 <63051472+Dylou22@users.noreply.github.com>
+Date:   Thu May 14 14:34:16 2020 +0200
+
+    Update chapeau5_ai.py
+
+[33mcommit 0d60acaa98c43d3d6ed6f5884bc16fa8f300ecb3[m
+Author: Dylou22 <63051472+Dylou22@users.noreply.github.com>
+Date:   Thu May 14 10:24:44 2020 +0200
+
+    Create chapeau5_ai.py
+
+[33mcommit fa7d892ed7eae10aeec9a5cdecb0e58e16cf1a89[m[33m ([m[1;31mDylanJaouiIN104/master[m[33m)[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 24 21:24:49 2020 +0200
+
+    Add unittests for Game from 2 to 5 Cheater players.
+
+[33mcommit 5fbbebc07e4578b7dc5ef97dbb06cb6410bf39a4[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 24 21:22:15 2020 +0200
+
+    Replace print by game.log, to quiet down the Cheater
+
+[33mcommit af292f4d8f96d069a702cba44764feec6a5aaacd[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 24 21:06:28 2020 +0200
+
+    trivial: doc formatting
+
+[33mcommit 13a6dd36c890e23e192747fa3d84b68cbf3a03ab[m
+Merge: ed4311c 2e6fa9a
+Author: JD Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 24 19:34:53 2020 +0200
+
+    Merge pull request #12 from JDGaraudEnsta/StrictRules
+    
+    Strict rules:
+    - can't give a clue if we already have  coins
+    - can't give an empty clue (as in "you don't have any red card")
+
+[33mcommit 2e6fa9a8a0e92a9f004ec390303780d9b1adce49[m[33m ([m[1;31mDylanJaouiIN104/StrictRules[m[33m)[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 24 19:25:12 2020 +0200
+
+    Fix all tests when using StrictRules
+
+[33mcommit 3e354bdb423bbaa4c987e20f8662a102eeb1304e[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 24 18:59:51 2020 +0200
+
+    Fix bug: a blue coin was used even if the the Clue was invalid
+
+[33mcommit d4ccddc341f4bc189c06231b374681acb596bdf5[m
+Merge: 61047fc ed4311c
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 24 16:46:38 2020 +0200
+
+    Merge branch master into StrictRules
+
+[33mcommit ed4311c313cab08b16081f793c2cc05065bd97a6[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Mon Apr 20 09:38:26 2020 +0200
+
+    More details on windows install
+
+[33mcommit f068090ab91435310a38373d2c429bdc3aa43f08[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 10 18:45:50 2020 +0200
+
+    Quick fix of #8 by disabling colors on windows
+
+[33mcommit 983f58c224d01b0779986834a7849d6e142babf6[m
+Merge: b9d5359 7998ecd
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 10 17:57:44 2020 +0200
+
+    Merge branch 'master' of github.com:JDGaraudEnsta/hanabi
+
+[33mcommit b9d5359649766101ced417e7c550881160117bdf[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 10 17:57:33 2020 +0200
+
+    upload the html doc
+
+[33mcommit c7e855d69808eabbc2ad6e85fed68784b778a1ce[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 10 17:49:28 2020 +0200
+
+    Improve the doc
+
+[33mcommit 7998ecd95e27968730be1a82ee802428bf0b26c3[m
+Author: JD Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Fri Apr 10 14:59:19 2020 +0200
+
+    Update README.md
+    
+    Windows instructions
+
+[33mcommit f4cd9118ce1afa12973cba32c401d2955ad4a1ba[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Thu Apr 9 23:49:51 2020 +0200
+
+    apply PEP-8
+
+[33mcommit 774d4b114abce933a75ceaf912bf66bb49f49004[m
+Author: JD Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Tue Mar 17 22:22:12 2020 +0100
+
+    Create FAQ.md
+
+[33mcommit 1d41455c61978346154dc86da3a29105ef9c2483[m
+Author: JD Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Tue Mar 17 22:16:10 2020 +0100
+
+    Update README.md
+
+[33mcommit 02b72f994b3bbb4eb3bc24b81415fcdba09d7da5[m
+Author: JD Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Wed Feb 26 13:58:45 2020 +0100
+
+    Update README.md
+    
+    How to Write a Git Commit Message
+
+[33mcommit 567206685fca45f0c3545b3fb9e6f97973f94316[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Tue Dec 24 16:53:31 2019 +0100
+
+    link to FB's recent AI
+
+[33mcommit 61047fcf133ccc4827ea7cb5fc168e41b8934e26[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue May 21 19:46:12 2019 +0200
+
+    score is zero if 3 red coins
+
+[33mcommit 5dfb8982f030d163ef1783d5d7b25dcf8c4f9672[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue May 7 18:19:08 2019 +0200
+
+    Strict Rules: cannot give a clue if no card is matching. Still need to update some tests accordingly
+
+[33mcommit 392135826d2aab951e720d7ae94a8d140c76cd20[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue May 7 17:50:57 2019 +0200
+
+    results
+
+[33mcommit 8eff32d9f5a4e5f5d63261bf7746bee5edb088aa[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue May 7 15:16:24 2019 +0200
+
+    quiet version
+
+[33mcommit 2df94aea8b7811ac359f89c1dbe39b4d53bb6307[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue May 7 15:15:22 2019 +0200
+
+    Bugfix: turn(str) was not working
+
+[33mcommit 89d31c3360e4fadc318440d3f45964897c0671f4[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue May 7 10:27:09 2019 +0200
+
+    remove accents
+
+[33mcommit 6e230d5cb535816f522d18d35a94af1fca293add[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue May 7 10:24:20 2019 +0200
+
+    Add Deck unittest from Ismael
+
+[33mcommit a6a4f1b9a062d0b8f28371a0fe1ac472560c0862[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Tue Apr 23 20:22:04 2019 +0200
+
+    Start run_tests.sh by the unittests
+
+[33mcommit 14b9c185ca493b15d2543d80601522073fd378c9[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 23 18:21:37 2019 +0200
+
+    unittest HandTest: contribution of Bernard Gorzkowski
+
+[33mcommit 5aa3b6e8a7805dde15ffd22c5f294f98d1e194d2[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 23 18:18:18 2019 +0200
+
+    unittest, DeckTest: contribution of Robin
+
+[33mcommit 492af619cad1b6b8cb0daf7519543bc208a6bdb0[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 23 17:17:46 2019 +0200
+
+    Allow many_run.sh to play nb_players
+
+[33mcommit 02bee85786bc17f8995543f835b2361cf5ba66e2[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 23 16:39:49 2019 +0200
+
+    Fix unittest asertRaises
+
+[33mcommit 98b4bcd77d2c5d7539c342156d0e38e31895bf8b[m
+Merge: e72db05 0bf46d3
+Author: JD Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Tue Apr 23 16:11:30 2019 +0200
+
+    Merge pull request #6 from CharbelALHELOU/unittest_contribution_charbel
+    
+    Add unittest for Card
+
+[33mcommit 0bf46d39ec056a704e80a4ff94cf060c5bc960cc[m
+Author: Charbel ALHELOU <alhelou@athena15.ensta.fr>
+Date:   Tue Apr 23 15:51:08 2019 +0200
+
+    Add unittest for Card
+
+[33mcommit e72db053e2149fa1f7b59ef8c064710543e0aaa2[m
+Merge: 965d9f4 0f4bde1
+Author: JD Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Tue Apr 23 15:31:53 2019 +0200
+
+    Merge pull request #5 from juliemnier/unittest_contrib
+    
+    Add unittest for Color
+
+[33mcommit 0f4bde174e5673ff15d21fe1c4c0db7eac8e86f4[m
+Author: Julie MEUNIER <jmeunier@athena04.ensta.fr>
+Date:   Tue Apr 23 15:29:22 2019 +0200
+
+    Add unittest for Color
+
+[33mcommit 965d9f40db2d1c672448ffbe3a73b1ee0b8681e9[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Tue Apr 23 00:01:31 2019 +0200
+
+    Tips on fork in Week4.md
+
+[33mcommit d5defb22e314d870a7dbcbb54a3ff8c321d1c14a[m
+Author: Jean-Didier Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Mon Apr 22 16:59:21 2019 +0200
+
+    Add helpful attr to base class AI: self.other_hands and self.other_players_cards
+
+[33mcommit 4fcfdd6f385c34913e0df97cd6f927f7a3716dbe[m
+Merge: 4760c32 a2b7f40
+Author: JD Garaud <48656672+JDGaraudEnsta@users.noreply.github.com>
+Date:   Mon Apr 22 16:41:16 2019 +0200
+
+    Merge pull request #4 from Demi-Lune/master
+    
+    Create Week4.md
+
+[33mcommit a2b7f403656c807a124d2881c155c5f390110068[m
+Author: JD Garaud <46057288+Demi-Lune@users.noreply.github.com>
+Date:   Mon Apr 22 16:39:53 2019 +0200
+
+    Create Week4.md
+
+[33mcommit 4760c327677f532fd996d1786819ce338a602c52[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Apr 21 23:40:56 2019 +0200
+
+    Fix game5 and game7: now cRed is not acceptable
+
+[33mcommit f0ed128961060aa5cb34fd8e5f777e805a97bc11[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Apr 21 23:22:07 2019 +0200
+
+    test for 4 players game
+
+[33mcommit 50d703c15e9cd3c4e67b3913ab0d5c2f09d222da[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Apr 21 23:06:52 2019 +0200
+
+    Fix game for 2 to 5 players
+
+[33mcommit 2305651537692bc29a7df9b566f66bfd1c57d183[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Apr 21 22:01:39 2019 +0200
+
+    doc
+
+[33mcommit 1a6150edd6960857955fb54832b0daa8092d88a6[m
+Merge: 2d20ab9 04ed8f2
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 16 09:54:31 2019 +0200
+
+    Merge branch 'master' of github.com:JDGaraudEnsta/hanabi
+
+[33mcommit 2d20ab93f492499d1cb3a4bb6de3c8e4a0558efe[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Apr 14 22:38:37 2019 +0200
+
+    Week3 hints
+
+[33mcommit 04ed8f2bbfcef0c05e22ae992ea5efeac091d0f6[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 9 17:47:46 2019 +0200
+
+    Howto sync fork with upstream
+
+[33mcommit 019c957b1cd1bf0e738fd85aff9461fddae19180[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 9 16:31:10 2019 +0200
+
+    coverage is very easy to use
+
+[33mcommit 3f6d468ab89144a3bf55db8fb1de39073e8e5ed2[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 9 15:57:50 2019 +0200
+
+    bug: 3 players was ignored
+
+[33mcommit ce575cf159cbddcdd9e9d8ecdd848d238959ef26[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 9 15:04:40 2019 +0200
+
+    oups
+
+[33mcommit 634d774f719ffbd3ecb4275d0352c9e70f9fb7b7[m
+Merge: 4d2a63a d854478
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 9 13:35:46 2019 +0200
+
+    Merge branch 'master' of github.com:JDGaraudEnsta/hanabi
+
+[33mcommit 4d2a63ad46374c92968bea5e0c9dcc5a85f25122[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 9 13:35:34 2019 +0200
+
+    Discussion topics for Week2
+
+[33mcommit d854478a5a64905b7dc153104ae24197dfef93b2[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 2 17:53:35 2019 +0200
+
+    Easier to use Game.play function (and don't look my own game)
+
+[33mcommit d41a4bab0ff04c6d32b6f8100c09497f046cb48c[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 2 17:51:53 2019 +0200
+
+    Easier to use Game.play function
+
+[33mcommit 7ac58446e9d1c2d51860280208d6d588ed8a9898[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 2 15:41:46 2019 +0200
+
+    PEP8
+
+[33mcommit c8810b3b9f80f62e6a56597b05f5749975c8cb77[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Apr 2 12:03:41 2019 +0200
+
+    some ideas for today's session
+
+[33mcommit 59bbef463a1c44ac2a9eb010578fc493685b5795[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Mar 23 17:27:13 2019 +0100
+
+    doc
+
+[33mcommit 73ee9e031cea70dbef4d2aa37889a6d419f39c4f[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Mar 23 17:10:42 2019 +0100
+
+    Rewrite the tasks for 2 students, using the current module
+
+[33mcommit 56e9b83f80595ef9cb1ed31f8ead62777e3c0832[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Mar 23 12:25:47 2019 +0100
+
+    Add GPL Licence
+
+[33mcommit f5ec2952748138f7c021fe07ead68bd2b70ea7bd[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Feb 7 00:05:11 2019 +0100
+
+    trivial
+
+[33mcommit 67e63beae44fa1f7908200898e8fb4750a5ff581[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Tue Feb 5 20:04:13 2019 +0100
+
+    biblio
+
+[33mcommit c29a1b46f17d419cd57dd28a45495bd61f06a1c4[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Dec 30 21:38:15 2018 +0100
+
+    AI Cheater handles crisis a little better
+
+[33mcommit fa5f8b99b6a3ac30ef97eea1f63779f0a3291267[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Dec 30 21:02:41 2018 +0100
+
+    AI can discard2 when she sees a card in partner's hand
+
+[33mcommit 018a8d0d5687fb2b1ea2041c4a621760a642c965[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Dec 30 18:56:23 2018 +0100
+
+    First results for AI
+
+[33mcommit 82e53b7a39012937270b361e09ce144d0943b51a[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Dec 30 18:42:50 2018 +0100
+
+    Moved binary to src. It is installed in ~/.local/bin (add it to your PATH)
+
+[33mcommit 33ce40f57cb92c1c84877eb748c6cf6aa5cb3889[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Dec 30 18:32:08 2018 +0100
+
+    AI fixed for tricky cases
+
+[33mcommit d94a34ea04626086d59cf9ed1e90cc66935714cc[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Dec 30 17:40:42 2018 +0100
+
+    AI Cheater is starting to be good
+
+[33mcommit 10216b8d513795165a4bddacfce1ca9ed7e8da5d[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Dec 30 11:59:11 2018 +0100
+
+    auto testing
+
+[33mcommit 10ee5a106d3d848a6fddaf5e5956f297a952e95b[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sun Dec 30 11:56:15 2018 +0100
+
+    auto testing
+
+[33mcommit ca8982dc9d28c061a5bb82f6c5e77ab4185e52ef[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 23:48:01 2018 +0100
+
+    nicer finish
+
+[33mcommit e3453f8d0e87ee9a1eb86d36771550c4b47e971c[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 23:40:56 2018 +0100
+
+    Not a pb if deck is empty
+
+[33mcommit 9b73eee7caed3c127d29a2f9fdad501c3f9f63f6[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 23:35:21 2018 +0100
+
+    Two more replays
+
+[33mcommit fb9db4eb5e1f66fe657873e17565303780bcd4ef[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 23:34:58 2018 +0100
+
+    bug: replay infinite-loop when user-mistake
+
+[33mcommit b1ea3045779c1f80c78dc3b1b8ad1dbcaba045c6[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 22:52:15 2018 +0100
+
+    bug: I could clue even without coins
+
+[33mcommit b64b4acd7522d500524142b68afd0cd74e5fc76d[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 22:47:18 2018 +0100
+
+    Replay is ok
+
+[33mcommit 5725a951ff9845cade8e1cf728a26efd4842158b[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 21:24:12 2018 +0100
+
+    Rename and move src
+
+[33mcommit 5348b215e6f9bf177582119a925413bc29dcda74[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 16:09:22 2018 +0100
+
+    Add pdf with a bit of theory
+
+[33mcommit 545a0d24920247424e1f0b7f7b9a0eaa86f74894[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Sat Dec 29 16:08:25 2018 +0100
+
+    minor
+
+[33mcommit 8da28eed7dff3977a31e7173c19bb5896e4066cc[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Fri Dec 28 23:43:25 2018 +0100
+
+    load is ok (needed to add locals for exec)
+
+[33mcommit 7206a5e0202f4fec9018dcd625d37b68a425ab72[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Fri Dec 28 16:14:00 2018 +0100
+
+    ascii art
+
+[33mcommit 7fc1ad6f36c8a260af19eb8a60f9e0e46f9d02bb[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Fri Dec 28 15:36:23 2018 +0100
+
+    Doc
+
+[33mcommit 0bddddacc328338795ec475d6ee914cb40f0359f[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Fri Dec 28 11:36:36 2018 +0100
+
+    Doc
+
+[33mcommit beee265e49ef2a7be2ad78b77f9ca003c04c7ef2[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Fri Dec 28 11:18:14 2018 +0100
+
+    Cheat code is > ; found %r
+
+[33mcommit 6374d79a513daf7b3e28c502548e82bc04a687d1[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Fri Dec 28 10:36:29 2018 +0100
+
+    autosave
+
+[33mcommit 6817730399a437836dd90657706ec794254d29e8[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 23:47:12 2018 +0100
+
+    More color. May have added a few bugs. Using repr/str is probably a bad idea
+
+[33mcommit 5378b6f914c435783fb6730bb1503a8289d12c57[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 23:07:14 2018 +0100
+
+    Cheatcode, color output
+
+[33mcommit 9d0bb3e8385524a6e6da91b3cf48ecf7715cfce1[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 22:40:11 2018 +0100
+
+    image
+
+[33mcommit 98eee028926ed7ba405196934a7336b4b1a2d571[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 22:39:53 2018 +0100
+
+    Game is playable
+
+[33mcommit 9c97e74f960e0d9d7eb5630592151c7676bec9de[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 19:30:52 2018 +0100
+
+    use sphinx3-build
+
+[33mcommit b8f77ab85c75ee4ea86b7c0ba17343a7e8c8b2ed[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 19:30:20 2018 +0100
+
+    Add Makefiles
+
+[33mcommit 01937f3ebdb43a803f4f858dec1a995b1fbc059f[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 19:12:29 2018 +0100
+
+    Add sphinx doc
+
+[33mcommit 7da7a7355eaeaabea37ffa359c2e3b65e561f655[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 13:05:53 2018 +0100
+
+    Premier round; bug interessant: tous les W1 sont le meme objet
+
+[33mcommit 9ddf63d7cde506ec371334c486c43d9c93bece27[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Thu Dec 27 11:33:36 2018 +0100
+
+    Class Deck et test
+
+[33mcommit 0054a024a6051b129b91dbacd32bcd30947b608d[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Wed Dec 26 17:55:54 2018 +0100
+
+    first commit
+
+[33mcommit 17208899ad8eba7c8eae92102ba3f9e644e8694f[m
+Author: Jean-Didier Garaud <jean-didier.garaud@onera.fr>
+Date:   Wed Dec 26 17:53:50 2018 +0100
+
+    first commit
