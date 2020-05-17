@@ -61,7 +61,7 @@ class Card:
         self.color_clue = False
         self.number_clue = False
         self.recommanded = False
-        self.risque = False
+        self.risky = False
         self.dead = False
         self.indispensable = False
 
