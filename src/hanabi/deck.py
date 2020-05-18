@@ -18,8 +18,8 @@ import readline  # this greatly improves `input`
 from enum import Enum
 from enum import unique
 
-#from . import ascii_art
-#from . import ai
+from hanabi import ascii_art
+from hanabi import ai
 
 
 @unique
@@ -244,7 +244,7 @@ class Game:
 
         self.blue_coins = 8
         self.red_coins = 0
-
+        self.somme_joueurs = 0
         self.ai = None
 
 
@@ -348,6 +348,10 @@ class Game:
         icard = int(index)
         card = self.current_hand.pop(icard)
         self.log(self.current_player_name, "tries to play", card, "... ", end="")
+        for i in range(5):
+            for j in range(len(self.hands[i])):
+                if self.hands[i].cards[j].recommanded ==True :
+                    self.hands[i].cards[j].risky = True
 
         if (self.piles[card.color]+1 == card.number):
             self.piles[card.color] += 1
@@ -360,10 +364,7 @@ class Game:
                 except ValueError:  # it is valid to play a 5 when we have 8 coins. It is simply lost
                     pass
             #Après que le joueur ait joué avec succès, toutes les cartes recommandée deviennent risquées
-            for i in range(5):
-                for j in range(4):
-                    if game.hands[i].cards[j].recommanded ==True :
-                        game.hands[i].cards[j].risky == True
+
         else:
             # misplay!
             self.discard_pile.append(card)
@@ -403,50 +404,42 @@ class Game:
         self.log(self.current_player_name, "gives a clue", hint, "to", target_name)
         """2 listes à 5 entrées : la première c'est le nombre de chaque joueur, et la seconde c'est le nombre que chaque joueur peut déduire pour la partie"""
         """On en profite pour update les recommandations et les dead cards de chaque joueur"""
-        liste_nombre = [nombre(game,joueur) for joueur in range(5)]#Contient le nombre de chaque joueur après avoir donné un indice
-        somme_mod_huit = sum(liste_nombre[1:])%8
-        somme_joueurs = []
+        liste_nombre = [nombre(self,joueur) for joueur in range(5)]#Contient le nombre de chaque joueur après avoir donné un indice
         somme = sum(liste_nombre)
-        for i in range(5):
-            somme_joueurs.append((somme-liste_nombre[i])%8)
-        #Il faut maintenant que chaque joueur puisse déduire son nombre
-        # nombres_deduits = [liste_nombre[0]]
-        # for i in range(5):
-        #     ndeduit = somme_joueurs[0]
-        #     for j in range(len(liste_nombre)):
-        #         if j!=i:
-        #             ndeduit -=liste_nombre[j]
-        #     nombres_deduits.append(ndeduit)
-            #Il faut reconstituer le nombre de chaque joueur à partir de la somme mod 8 et des nombres qu'ils connaissent
-            #Raffinement : les 5 seront systématiquement flag comme indispensables, et pour le calcul du nombre : si le 5 est c1 et que le joueur n'a rien à jouer, il faut lui donner l'indice que le rang est 5.
+        self.somme_joueurs = (somme-liste_nombre[1])%8
+#Raffinement : les 5 seront systématiquement flag comme indispensables, et pour le calcul du nombre : si le 5 est c1 et que le joueur n'a rien à jouer, il faut lui donner l'indice que le rang est 5.
 
             #Il faut ensuite flag les cartes en mettant les attributs dead, recommanded et risky
-            for i in range(1,5):
-                n_propre = liste_nombre[i]
-                if n_propre == 0:
-                    game.hands[i].cards[0].recommanded = True
-                    game.hands[i].cards[0].risky = False
-                if n_propre == 1:
-                    game.hands[i].cards[1].recommanded = True
-                    game.hands[i].cards[1].risky = False
-                if n_propre == 2:
-                    game.hands[i].cards[2].recommanded = True
-                    game.hands[i].cards[2].risky = False
-                if n_propre == 3:
-                    game.hands[i].cards[3].recommanded = True
-                    game.hands[i].cards[3].risky = False
-                if n_propre == 4:
-                    game.hands[i].cards[0].dead = True
-                    game.hands[i].cards[0].recommanded = False
-                if n_propre == 5:
-                    game.hands[i].cards[1].dead = True
-                    game.hands[i].cards[1].recommanded = False
-                if n_propre == 6:
-                    game.hands[i].cards[6].dead = True
-                    game.hands[i].cards[6].recommanded = False
-                if n_propre == 7:
-                    game.hands[i].cards[7].dead = True
-                    game.hands[i].cards[7].recommanded = False
+        for i in range(1,5):
+            n_propre = liste_nombre[i]
+            if n_propre == 0:
+                self.hands[i].cards[0].recommanded = True
+                self.hands[i].cards[0].risky = False
+                self.hands[i].cards[0].dead = False
+            if n_propre == 1:
+                self.hands[i].cards[1].recommanded = True
+                self.hands[i].cards[1].risky = False
+                self.hands[i].cards[1].dead = False
+            if n_propre == 2:
+                self.hands[i].cards[2].recommanded = True
+                self.hands[i].cards[2].risky = False
+                self.hands[i].cards[2].dead = False
+            if n_propre == 3:
+                self.hands[i].cards[3].recommanded = True
+                self.hands[i].cards[3].risky = False
+                self.hands[i].cards[3].dead = False
+            if n_propre == 4:
+                self.hands[i].cards[0].dead = True
+                self.hands[i].cards[0].recommanded = False
+            if n_propre == 5:
+                self.hands[i].cards[1].dead = True
+                self.hands[i].cards[1].recommanded = False
+            if n_propre == 6:
+                self.hands[i].cards[2].dead = True
+                self.hands[i].cards[2].recommanded = False
+            if n_propre == 7:
+                self.hands[i].cards[3].dead = True
+                self.hands[i].cards[3].recommanded = False
 
         """Retourne le nombre associé à la main de chaque joueur sous la forme d'une liste à 5 entrées"""
         #  player = clue[1]  # if >=3 players
@@ -534,10 +527,11 @@ class Game:
             pass
         self.save('autosave.py')
 
-        self.log("\nOne final glance at the table:")
-        self.log(self.starting_deck)
-        self.print_piles()
-        print("\nGoodbye. Your score is %d"%self.score)
+        # self.log("\nOne final glance at the table:")
+        # self.log(self.starting_deck)
+        # self.print_piles()
+        #print("\nGoodbye. Your score is %d"%self.score)
+        return(self.score)
 
     def save(self, filename):
         """Save starting deck and list of moves."""
@@ -582,17 +576,18 @@ def nombre(game,joueur):
     playable = [ (i+1, card.number) for (i, card) in
                 enumerate(main)
                 if game.piles[card.color]+1 == card.number ]
+
     #print(playable)
     #Ici on dispose de la main du joueur actuel, de l'état des piles, et des cartes jouables dans sa main
-    indice = None#L'indice qui va être renvoyé : c'est le nombre du joueur
-
     #D'abord on étudie les cas où il y a des cartes jouables
     if playable != []:
+        #print("playable = ",playable)
         #D'abord on cherche les 5 jouable
         cinq = None#L'indice d'un cinq jouable dans la main du joueur
         for i in range (len(playable)):
             if playable[i][1] == 5:
-                return(i,playable)
+                carte = playable[i]
+                return(carte[0]-1)
         min = playable[0][0]
         for i in range(len(playable)):
             if playable[i][0] <= min :
@@ -600,37 +595,27 @@ def nombre(game,joueur):
                 carte = playable[i]
         return(carte[0]-1)
     else:
-        mortes = [ (i+1, card.number) for (i, card) in
-                enumerate(game.current_hand.cards)
-                if game.piles[card.color] >= card.number ]
+        mortes = [ (i+1, card.number) for (i, card) in enumerate(main) if game.piles[card.color] >= card.number ]#Ne prend pas en compte les cartes indispensables
         if mortes !=[]:
-            return(mortes[0][0]+4)
+            #print("mortes=",mortes)
+            return(mortes[0][0]+3)
         else:#Ajouter cartes indispensables si ça marche
+        #Une carte indispensable sera jouable mais ne l'est pas actuellement
+            n1 = main[0].number
+            defausse = game.discard_pile
+            if n1 == 5:
+                if main[1].number == 5:
+                    if main[2].number == 5:
+                        return(7)
+                    return(6)
+                return(5)
+            else:
+                if main[0] in defausse.cards:
+                    return(5)
             return(4)
 
 
-
 if __name__ == "__main__":
-    # print ("Red 4 is:", Card(Color.Red, 4))
-
-    # deck = Deck()
-    # print("Unshuffled:", deck)
-    # deck.shuffle()
-    # print("Shuffled:", deck)
-
-    # hands = deck.deal(5)
-    # alice, benji, clara, devon, elric = hands
-    # players = {0:"Alice", 1: "Benji", 2:"Clara", 3:"Dante", 4:"Elric"}
-    # for i, h in enumerate(hands): print("%s's hand is %s"%(players[i], h))
-
-    # print ("Is B1 in Alice's hand?", "B1" in alice.cards)
-
-    # try:
-    #     card = alice.pop(1)
-    #     print("Alice plays", card)
-    # except ValueError:
-    #     print("Alice can't play her 1st card")
-
     print("\nLet's start a new game")
     game = Game(5)
     print("Here are the hands:")
