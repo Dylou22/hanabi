@@ -521,15 +521,15 @@ class Game:
                 self.turn(self.ai)
                 if self.score == 25:
                     raise StopIteration("it is perfect!")
-#            self.log("Game finished because deck exhausted")
+            self.log("Game finished because deck exhausted")
         except (KeyboardInterrupt, EOFError, StopIteration) as e:
             self.log('Game finished because of', e)
             pass
         self.save('autosave.py')
 
-        # self.log("\nOne final glance at the table:")
-        # self.log(self.starting_deck)
-        # self.print_piles()
+        self.log("\nOne final glance at the table:")
+        self.log(self.starting_deck)
+        self.print_piles()
         #print("\nGoodbye. Your score is %d"%self.score)
         return(self.score)
 
@@ -603,15 +603,14 @@ def nombre(game,joueur):
         #Une carte indispensable sera jouable mais ne l'est pas actuellement
             n1 = main[0].number
             defausse = game.discard_pile
-            if n1 == 5:
-                if main[1].number == 5:
-                    if main[2].number == 5:
+            if n1 == 5 or n1 in defausse.cards:
+                if main[1].number == 5 or main[1] in defausse.cards:
+                    if main[2].number == 5 or main[2] in defausse.cards:
+                        if main[3].number == 5 or main[3] in defausse.cards:
+                            return(5)
                         return(7)
                     return(6)
                 return(5)
-            else:
-                if main[0] in defausse.cards:
-                    return(5)
             return(4)
 
 
