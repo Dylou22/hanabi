@@ -10,7 +10,7 @@ I = np.zeros(26)
 
 moyenne=0
 for i in range (n):
-    game = hanabi.Game(5)  # 2 players
+    game = hanabi.Game(5)  # 5 players
     ai = Robot(game)
 	# pour jouer toute une partie
     game.quiet = True
@@ -31,8 +31,8 @@ print (moyenne)
 #     I[score]+=1
 
 #plt.plot(I)
-#plt.hist(H,25)
-#plt.show()
+plt.hist(H,26)
+plt.show()
 '''print(H)
 plt.plot(H)
 # plt.plot(I)
