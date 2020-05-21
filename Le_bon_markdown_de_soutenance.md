@@ -3,9 +3,11 @@
 Projet d'IN104 de 1ère année à l'ENSTA Paris
 Le but est de créer une IA capable de jouer au jeu de plateau Hanabi, à partir d'un module python fourni contenant une implémentation du jeu ainsi qu'une IA **"Cheater"** capable de voir son propre jeu.
 
-# Stratégie du chapeau
+# Approche du projet et stratégie du chapeau
 
-Nous avons choisi d'implémenter une IA capable de jouer en suivant la stratégie dite *du chapeau*: lorsqu'un joueur doit donner un indicce, il calcule un nombre pour chaque autre joueur correspondant à sa recommandation de jeu (jeu ou défausse), le traduit en un indice donnable en jeu. Les autres joueurs sont capables de faire le calcul inverse et de déduire le nombre qui leur est attribué.
+La prise en main du projet c'est faite non sans mal car nous avons eu un peu de mal à voir toutes les possibilités qui s'offraient à nous. En effet, partir d'un projet qui est deja avancé et assez compliqué et nouveau pour nous (vérifier la syntaxe de chaque élément que l'on veut utiliser, quel endroit du code correspond à quelle étape de jeu...). Nous nous sommes donc intéressés dans un premier temps au déchiffrage de toutes les fonctions et classes importantes de l'algorithme.
+Ensuite nous avons choisi d'implémenter une IA capable de jouer en suivant la stratégie dite *du chapeau* (1ère stratégie présentée dans le pdf) : lorsqu'un joueur doit donner un indice, il calcule un nombre pour chaque autre joueur correspondant à sa recommandation de jeu (jouer ou défausser), le traduit en un indice donnable en jeu. Les autres joueurs sont capables de faire le calcul inverse et de déduire le nombre qui leur est attribué. 
+Nous avons cherché à rapidement obtenir une IA fonctionnelle en omettant plusieurs partie de l'algorithme afin d'ennsuite pouvoir la perfectionner.
 
 ## 1ère implémentation 
 
@@ -31,4 +33,15 @@ L'IA ne perd déjà plus aucune partie. Les scores sont compris entre 10 et 25, 
 
 ## 2è implémentation
 
-Plutôt que d'implémenter totalement les cartes indispensables, on décide de sauver uniquement les 5, identifiés manuellement comme les cartes défaussées qui coûtent le plus de parties.
+Les 
+
+# Resultat
+On obtient en l'état une moyenne de 20.6. On peut dire que l'ajout des cartes indispensables 
+
+# Mauvaises idées
+Nous avons remarqué qu'en fin de partie la condition risky=True qui empêche de jouer était un peu forte et que l'on se retrouvait avec un dernier tour ou souvent personne ne jouait de carte. Nous avons donc rajouter une condition pour que lorsque le deck est vide les joueurs jouent quand même leur carte même si risky=True. Il s'est avéré que les resultats étaient similaires avec et sans cette condition.
+
+# Piste d'améliorations et idées non réalisées 
+Tout d'abord les indices que le joueur donne sont toujours les mêmes, c'est à dire si l'algorithme dit que le joueur doit donner un indice sur la couleur à un autre joueur il donnera toujours la couleur rouge (pour le rang de la carte ce sera 1). On perd donc de l'information même si elle n'est pas primordiale pour l'algorithme, si ces indices étaient données avec plus de discernement, ils pourraient se révéler utiles surtout en fin de partie.
+
+# Conclusion
