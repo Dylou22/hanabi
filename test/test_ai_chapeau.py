@@ -3,16 +3,24 @@ from hanabi.ai import *
 import numpy as np
 import matplotlib.pyplot as plt
 plt.close()
-H = np.zeros(26)
+n=10000
+
+H = np.zeros(n)
 I = np.zeros(26)
-for i in range (10000):
+
+moyenne=0
+for i in range (n):
     game = hanabi.Game(5)  # 2 players
     ai = Robot(game)
-    # pour jouer toute une partie
+	# pour jouer toute une partie
     game.quiet = True
     game.ai = ai
     score = game.run()
-    H[score]+=1
+    H[i]=score
+    I[score]+=1
+    moyenne+=score
+moyenne =moyenne/n
+print (moyenne)
 # for i in range(1000):
 #     game = hanabi.Game(5)  # 2 players
 #     ai = Cheater(game)
@@ -21,7 +29,11 @@ for i in range (10000):
 #     game.ai = ai
 #     score = game.run()
 #     I[score]+=1
-print(H)
+
+#plt.plot(I)
+#plt.hist(H,25)
+#plt.show()
+'''print(H)
 plt.plot(H)
 # plt.plot(I)
 # plt.show()
@@ -32,4 +44,4 @@ H_c1_sauve = [0.000e+00,0.000e+00 ,0.000e+00, 0.000e+00, 0.000e+00, 0.000e+00, 0
 plt.plot(H_mortes_beta)
 plt.plot(H_mortes_deuxpointszero)
 plt.plot(H_5_sauves)
-plt.show()
+plt.show()'''
