@@ -33,7 +33,7 @@ On peut ainsi constituer une liste des cartes que le joueur devrait jouer (*reco
 
 L'IA ne perd déjà plus aucune partie. Les scores sont compris entre 10 et 25, avec un maximum à 17. (1488 pour un échantillon de 10 000 parties). Ci-dessous, les résultats de 10 000 parties de la Beta et 10 000 parties du Cheater fourni.
 
-![Cheater IA vs Chapeau Beta IA](https://github.com/Dylou22/hanabi/blob/DevGermain/test/Histogramme_Beta_sans_indispensables_VS_Cheater.png)
+![Cheater IA vs Chapeau Beta IA](https://github.com/Dylou22/hanabi/blob/DevDylan/test/Histogramme_Beta_sans_indispensables_VS_Cheater.png)
 
 
 ## 2è implémentation
@@ -43,7 +43,7 @@ Les cartes indispensables ont été implémentées à la fin de la fonction *nom
 # Résultat
 On obtient en l'état une moyenne de 20.6. On peut dire que l'ajout des cartes indispensables.
 
-![Chapeau Beta IA VS Chapeau Avec 5 Sauvés](https://github.com/Dylou22/hanabi/blob/DevDylan/test/Histogramme_Beta_VS_5sauvespng.png)
+![Chapeau Beta IA VS Chapeau Avec 5 Sauvés](https://github.com/Dylou22/hanabi/blob/DevDylan/VersionFinale.png)
 
 # Mauvaises idées
 Nous avons remarqué qu'en fin de partie la condition *risky==True* qui empêche de jouer était un peu forte et que l'on se retrouvait avec un dernier tour ou souvent personne ne jouait de carte. Nous avons donc rajouté une condition pour que les joueurs jouent quand même leur carte même si elle est risquée lorsque le deck est vide. Il s'est avéré que les resultats étaient similaires avec et sans cette condition.
