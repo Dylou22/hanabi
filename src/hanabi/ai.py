@@ -145,4 +145,3 @@ class Cheater(AI):
         myprecious.sort(key=lambda p: (-p[0], p[1]))
         act = 'd%d'%myprecious[0][1]
         return act
-
