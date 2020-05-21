@@ -572,6 +572,7 @@ moves = %r
             self.turn(moves)
 
 def nombre(game,joueur):
+    
     main = game.hands[joueur].cards
     playable = [ (i+1, card.number) for (i, card) in
                 enumerate(main)
@@ -580,6 +581,7 @@ def nombre(game,joueur):
     #print(playable)
     #Ici on dispose de la main du joueur actuel, de l'état des piles, et des cartes jouables dans sa main
     #D'abord on étudie les cas où il y a des cartes jouables
+    
     if playable != []:
         #print("playable = ",playable)
         #D'abord on cherche les 5 jouable
@@ -607,12 +609,13 @@ def nombre(game,joueur):
                 if main[1].number == 5 or main[1] in defausse.cards:
                     if main[2].number == 5 or main[2] in defausse.cards:
                         if main[3].number == 5 or main[3] in defausse.cards:
-                            return(5)
+                            return(4)
                         return(7)
                     return(6)
                 return(5)
             return(4)
-
+    
+        
 
 if __name__ == "__main__":
     print("\nLet's start a new game")
