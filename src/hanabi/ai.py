@@ -43,13 +43,13 @@ class Robot(AI):
         if (game.blue_coins>0):
             n_propre = game.somme_joueurs
             if n_propre == 0:
-                return("c11")
+                return("c51")
             if n_propre == 1:
-                return("c12")
+                return("c52")
             if n_propre == 2:
-                return("c13")
+                return("c53")
             if n_propre == 3:
-                return("c14")
+                return("c54")
             if n_propre == 4:
                 return("cR1")
             if n_propre == 5:
@@ -63,6 +63,10 @@ class Robot(AI):
             return("d%d"%mortes[0])
 #action 5 : carte c1 jetée
         else:
+            if game.current_hand.cards[0].number_clue==True and game.current_hand.cards[0].number==5 :
+                if game.current_hand.cards[1].number_clue==True and game.current_hand.cards[1].number==5 :
+                    return ("d3")
+                return ("d2")
             return("d1")
 
 
