@@ -47,7 +47,9 @@ On obtient en l'état une moyenne de 20.6. On peut dire que l'ajout des cartes i
 
 # 3ème implémentation et resultats finaux
 Nous nous sommes rendu compte d'un soucis de notre algorithme en dernière minute. En effet, notre condition sur la carte à jouée verifiait seulement si le premier élément était risqué (notre tableau contenant les indices de cartes jouable) et si il était le joueur ne jouait pas alors qu'il pourrait jouer une autre carte qui elle ne serait pas risquée. 
-En rectifiant on a fini par atteindre un score moyen de 21,06 (+0.4 par rapport à avant). Le script '''test_ai_chapeau.py''' lance l'AI 10000 fois. Au vu de l'article on peut déjà comprendre qu'il manque certaines parties de l'algorithme car dans l'article 'the recommandation strategy" obtient une moyenne de 23. 
+En rectifiant on a fini par atteindre un score moyen de 21,06 (+0.4 par rapport à avant). Le script '''test_ai_chapeau.py''' lance l'AI 10000 fois. Au vu de l'article on peut déjà comprendre qu'il manque certaines parties de l'algorithme car dans l'article 'the recommandation strategy" obtient une moyenne de 23.
+
+![Chapeau Final IA](https://github.com/Dylou22/hanabi/blob/DevDylan/test/VERSIONfINALE.png)
 
 # Mauvaises idées
 Nous avons remarqué qu'en fin de partie la condition *risky==True* qui empêche de jouer était un peu forte et que l'on se retrouvait avec un dernier tour où souvent personne ne jouait de carte. Nous avons donc rajouté une condition pour que les joueurs jouent quand même leur carte même si elle est risquée lorsque le deck est vide. Il s'est avéré que les resultats étaient similaires avec et sans cette condition. De plus en toute fin de partie on a remarqué que la conditions risky==True empêche souvent les joueurs de jouer au dernier tour. On a essayé de faire jouer les joueurs au même si cela était risqué au dernier tour mais es résultats ont été sensiblement les mêmes (voir moins bons). 
