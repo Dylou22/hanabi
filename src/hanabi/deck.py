@@ -60,10 +60,13 @@ class Card:
         self.number = number
         self.color_clue = False
         self.number_clue = False
+         """
+         Les attributs qui suivent indiquent le status des cartes au cours de la partie, selon les indices qui ont été donnés
+         """
         self.recommanded = False
         self.risky = False
         self.dead = False
-        self.indispensable = False
+        
 
     def __str__(self):
         return (str(self.color)[0] + str(self.number))
@@ -244,8 +247,13 @@ class Game:
 
         self.blue_coins = 8
         self.red_coins = 0
-        self.somme_joueurs = 0
         self.ai = None
+        """
+        Cet attribut permet au joueur actif d'accéder à la somme modulo 8 des nombres
+        associés aux mains des autres joueurs afin de donner l'indice correspondant
+        """
+        self.somme_joueurs = 0
+        
 
 
     def turn(self, _choice=None):
@@ -348,6 +356,9 @@ class Game:
         icard = int(index)
         card = self.current_hand.pop(icard)
         self.log(self.current_player_name, "tries to play", card, "... ", end="")
+        """
+        Update le statut des cartes déjà recommandées en recommandées + risquées si une carte est jouée entre temps
+        """
         for i in range(5):
             for j in range(len(self.hands[i])):
                 if self.hands[i].cards[j].recommanded ==True :
@@ -402,14 +413,16 @@ class Game:
         target_name = self.players[target_index]
 
         self.log(self.current_player_name, "gives a clue", hint, "to", target_name)
-        """2 listes à 5 entrées : la première c'est le nombre de chaque joueur, et la seconde c'est le nombre que chaque joueur peut déduire pour la partie"""
-        """On en profite pour update les recommandations et les dead cards de chaque joueur"""
+        """
+        liste_nombre contient le nombre associé à l'indice qu'il faut donner à chaque joueur. Ce nombre est mis à jour après chaque indice donné
+        """
         liste_nombre = [nombre(self,joueur) for joueur in range(5)]#Contient le nombre de chaque joueur après avoir donné un indice
         somme = sum(liste_nombre)
         self.somme_joueurs = (somme-liste_nombre[1])%8
-#Raffinement : les 5 seront systématiquement flag comme indispensables, et pour le calcul du nombre : si le 5 est c1 et que le joueur n'a rien à jouer, il faut lui donner l'indice que le rang est 5.
-
-            #Il faut ensuite flag les cartes en mettant les attributs dead, recommanded et risky
+        """
+        Après avoir donné l'indice, les joueurs mettent à jour ce qu'ils savent de leurs cartes. Selon le nombre correspondant à leur main,
+        ils mettent à jour le statut recommandé, risqué ou mort des cartes de leur jeu
+        """
         for i in range(1,5):
             n_propre = liste_nombre[i]
             if n_propre == 0:
@@ -440,8 +453,7 @@ class Game:
             if n_propre == 7:
                 self.hands[i].cards[3].dead = True
                 self.hands[i].cards[3].recommanded = False
-
-        """Retourne le nombre associé à la main de chaque joueur sous la forme d'une liste à 5 entrées"""
+               
         #  player = clue[1]  # if >=3 players
         for card in self.hands[target_index].cards:
             if hint in str(card):
@@ -572,6 +584,10 @@ moves = %r
             self.turn(moves)
 
 def nombre(game,joueur):
+   """
+   Cette fonction calcule le nombre associé à la main d'un joueur. Elle renvoie un nombre entre 0 et 7
+   qui correspond au coup que le joueur devrait faire : jouer ou défausser
+   """
     
     main = game.hands[joueur].cards
     playable = [ (i+1, card.number) for (i, card) in
@@ -603,9 +619,18 @@ def nombre(game,joueur):
             return(mortes[0][0]+3)
         else:#Ajouter cartes indispensables si ça marche
         #Une carte indispensable sera jouable mais ne l'est pas actuellement
-            n1 = main[0].number
+        """
+        On utilise une variante de l'algorithme proposé afin de sauver les 5 de la défausse: au lieu de conseiller de défausser la 1ère carte
+        si il n'y a pas de cartes mortes, on conseille la 2è si la 1ère carte est un 5, la 3è si la 1ère et la 2è sont des 5, etc
+        On regarde également si les cartes du joueur ont déjà été défaussées, ce qui constitue une version faible des cartes "indispensables"
+        telles qu'elles sont définies dans l'article
+        """
             defausse = game.discard_pile
-            if n1 == 5 or n1 in defausse.cards:
+            defausse_cartes = [ (i+1, card.number) for (i, card) in
+                enumerate(defausse)]
+            if main[0].number == 5 or main[0] in defausse.cards:
+                print(main[0])
+                print(defausse.cards)
                 if main[1].number == 5 or main[1] in defausse.cards:
                     if main[2].number == 5 or main[2] in defausse.cards:
                         if main[3].number == 5 or main[3] in defausse.cards:
