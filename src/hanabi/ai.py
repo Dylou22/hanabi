@@ -44,7 +44,7 @@ class Robot(AI):
                     return("p%d"%(i+1))
 
         #3. Donner un indice
-        if (game.blue_coins>0):3. Donner un indice
+        if (game.blue_coins>0):3. #Donner un indice
             n_propre = game.somme_joueurs
             if n_propre == 0:
                 return("c51")
