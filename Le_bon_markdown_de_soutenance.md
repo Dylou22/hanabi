@@ -7,7 +7,7 @@ Le but est de créer une IA capable de jouer au jeu de plateau Hanabi, à partir
 
 La prise en main du projet s'est faite non sans mal car nous avons eu des difficultés à voir toutes les possibilités qui s'offraient à nous. En effet, le code fourni était dense et se l'approprier a été assez long : vérifier la syntaxe de chaque élément que l'on veut utiliser, quel endroit du code correspond à quelle étape de jeu... Nous nous sommes donc intéressés dans un premier temps au déchiffrage de toutes les fonctions et classes importantes de l'algorithme.
 Nous avons ensuite choisi d'implémenter une IA capable de jouer en suivant la stratégie dite *du chapeau* (1ère stratégie présentée dans la documentation) : lorsqu'un joueur doit donner un indice, il calcule un nombre pour chaque autre joueur correspondant à sa recommandation de jeu (jouer ou défausser), le traduit en un indice donnable en jeu. Les autres joueurs sont capables de faire le calcul inverse et de déduire le nombre qui leur est attribué. 
-Nous avons cherché à rapidement obtenir une IA fonctionnelle en omettant plusieurs parties de l'algorithme afin d'ennsuite pouvoir la perfectionner.
+Nous avons cherché à rapidement obtenir une IA fonctionnelle en omettant plusieurs parties de l'algorithme afin d'ensuite pouvoir la perfectionner.
 
 ## 1ère implémentation 
 
