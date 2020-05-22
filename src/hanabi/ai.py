@@ -25,25 +25,26 @@ class AI:
 
 class Robot(AI):
     def play(self):
+        """Renvoie la meilleure action en suivant l'algorithme du chapeau :
+        1. Jouer une carte recommandée et non risquée
+        2. Jouer une carte recommandée et risquée si il y a moins de 2 jetons rouges
+        3. Donner un indice
+        4. Défausser une carte morte
+        5. Défausser c1. /!\ Nous avons implémenté une variante : si le joueur sait (grâce à l'indice réel) que c1 est un 5, il défausse alors c2. Si il sait que c1 et c2 sont des 5 alors c3, etc"""
         game = self.game
         jouables = [ i+1 for (i,card) in enumerate(game.current_hand.cards) if card.recommanded == True]
         mortes = [ i+1 for (i,card) in enumerate(game.current_hand.cards) if card.dead == True]
-
-#choix de l'action a effectuer en fonction de la main du joueur (playable card, most recent recomandation, no card played, hint tokken, discardable card)
-#			=>playable card : laquelle ?
-#			=>hint : à qui et quoi ?
-#			=>dicardable card : indice le plus faible
-#maj du tableau de jeu
+        # 1. Jouer une carte recommandée et non risquée
         if (jouables!=[]):
-            #print ("jouables=",jouables)
-            #print (game.current_hand.cards[jouables[0]-1].risky)
             for (i,card) in enumerate (game.current_hand.cards) :
                 if (card.risky == False and card.recommanded==True):
                     return("p%d"%(i+1))
+                # 2. Jouer une carte recommandée et risquée si il y a moins de 2 jetons rouges
                 elif(card.risky == True and card.recommanded==True and game.red_coins < 2):
                     return("p%d"%(i+1))
-#action 3 : si on peut donner un indice on le donne
-        if (game.blue_coins>0):
+
+        #3. Donner un indice
+        if (game.blue_coins>0):3. Donner un indice
             n_propre = game.somme_joueurs
             if n_propre == 0:
                 return("c51")
@@ -61,13 +62,14 @@ class Robot(AI):
                 return("cR3")
             if n_propre == 7:
                 return("cR4")
-#action 4 : si la dernière recommandation était de jeter une carte, jetée la carte
+        #Défausser une carte morte
         if mortes != []:
             #print ("mortes=",mortes)
             return("d%d"%mortes[0])
-#action 5 : carte c1 jetée
+        
+        #5. Défausser c1. /!\ Nous avons implémenté une variante : si le joueur sait (grâce à l'indice réel) que c1 est un 5, il défausse alors c2. Si il sait que c1 et c2 sont des 5 alors c3, etc
         else:
-            if game.current_hand.cards[0].number_clue == "5" :
+            if game.current_hand.cards[0].number_clue == "5" :#NB : number_clue est soit False (à l'initialisation), soit un caractère entre 1 et 5
                 if game.current_hand.cards[1].number_clue == "5" :
                     if game.current_hand.cards[2].number_clue == "5" :
                         return ("d4")
@@ -85,47 +87,25 @@ class Cheater(AI):
       * if blue_coin>0: give a clue on precious card (so a human can play with a Cheater)
       * if blue_coin<8: discard the largest one, except if it's the last of its kind or in chop position in his opponent.
     """
-
     def play(self):
         "Return the best cheater action."
         game = self.game
         playable = [ (i+1, card.number) for (i, card) in
                      enumerate(game.current_hand.cards)
                      if game.piles[card.color]+1 == card.number ]
-
         if playable:
             # sort by ascending number, then newest
             playable.sort(key=lambda p: (p[1], -p[0]))
             return "p%d"%playable[0][0]
-
-        #
-        discardable = [ i+1 for (i, card) in
-                        enumerate(game.current_hand.cards)
-                        if ( (card.number <= game.piles[card.color])
-                             or (game.current_hand.cards.count(card) > 1)
-                        ) ]
-        # discard already played cards, doubles in my hand
-        # fixme: discard doubles, if I see it in partner's hand
-        # fixme: il me manque les cartes sup d'une pile morte
-
+        discardable = [ i+1 for (i, card) in enumerate(game.current_hand.cards) if ( (card.number <= game.piles[card.color]) or (game.current_hand.cards.count(card) > 1)) ]
         if discardable and (game.blue_coins < 8):
             return "d%d"%discardable[0]
-
-        ## 2nd type of discard: I have a card, and my partner too
-
         discardable2 = [ i+1 for (i, card) in enumerate(game.current_hand.cards)
                          if card in self.other_players_cards
                        ]
         if discardable2 and (game.blue_coins < 8):
             return "d%d"%discardable2[0]
-
-
-        ## Look at precious cards in other hand, to clue them
-        precious = [ card for card in
-                     self.other_players_cards
-                     if (1+game.discard_pile.cards.count(card))
-                         == game.deck.card_count[card.number]
-                   ]
+        precious = [ card for card in self.other_players_cards if (1+game.discard_pile.cards.count(card)) == game.deck.card_count[card.number]]
         if precious:
             clue = False
             for p in precious:
