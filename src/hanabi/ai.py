@@ -35,10 +35,13 @@ class Robot(AI):
 #			=>dicardable card : indice le plus faible
 #maj du tableau de jeu
         if (jouables!=[]):
-            if (game.current_hand.cards[jouables[0]-1].risky == False):
-                return("p%d"%jouables[0])
-            elif(game.current_hand.cards[jouables[0]-1].risky == True and game.red_coins < 2):
-                return("p%d"%jouables[0])
+            #print ("jouables=",jouables)
+            #print (game.current_hand.cards[jouables[0]-1].risky)
+            for (i,card) in enumerate (game.current_hand.cards) :
+                if (card.risky == False and card.recommanded==True):
+                    return("p%d"%(i+1))
+                elif(card.risky == True and card.recommanded==True and game.red_coins < 2):
+                    return("p%d"%(i+1))
 #action 3 : si on peut donner un indice on le donne
         if (game.blue_coins>0):
             n_propre = game.somme_joueurs
@@ -60,11 +63,14 @@ class Robot(AI):
                 return("cR4")
 #action 4 : si la dernière recommandation était de jeter une carte, jetée la carte
         if mortes != []:
+            #print ("mortes=",mortes)
             return("d%d"%mortes[0])
 #action 5 : carte c1 jetée
         else:
-            if game.current_hand.cards[0].number_clue==True and game.current_hand.cards[0].number==5 :
-                if game.current_hand.cards[1].number_clue==True and game.current_hand.cards[1].number==5 :
+            if game.current_hand.cards[0].number_clue == "5" :
+                if game.current_hand.cards[1].number_clue == "5" :
+                    if game.current_hand.cards[2].number_clue == "5" :
+                        return ("d4")
                     return ("d3")
                 return ("d2")
             return("d1")
