@@ -1,7 +1,7 @@
 # Hanabi project
 
 Projet d'IN104 de 1ère année à l'ENSTA Paris
-Le but est de créer une IA capable de jouer au jeu de plateau Hanabi, à partir d'un module python fourni contenant une implémentation du jeu ainsi qu'une IA **"Cheater"** capable de voir son propre jeu.
+Le but est de créer une IA capable de jouer au jeu de cartes Hanabi, à partir d'un module python fourni contenant une implémentation du jeu ainsi qu'une IA **"Cheater"** capable de voir son propre jeu.
 
 # Approche du projet et stratégie du chapeau choisie
 
